@@ -15,6 +15,11 @@ public class move : MonoBehaviour
     {
         StartCoroutine("makeNode");
         gp = GameObject.FindObjectOfType<Global_parameter>();
+
+        GameObject g = Instantiate(node, transform.position, Quaternion.identity);
+        g.SetActive(true);
+        g.transform.parent = Path.transform;
+        gp.maxNodeNum++;
     }
 
     // Update is called once per frame
@@ -35,13 +40,13 @@ public class move : MonoBehaviour
     {
         while (true)
         {
-
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(0.1f);
 
             GameObject g = Instantiate(node, transform.position, Quaternion.identity);
             g.SetActive(true);
             g.transform.parent = Path.transform;
             gp.maxNodeNum++;
+
 
         }
     }
@@ -58,6 +63,7 @@ public class move : MonoBehaviour
             GameObject g = Instantiate(node, transform.position, Quaternion.identity);
             g.SetActive(true);
             g.transform.parent = Path.transform;
+            gp.maxNodeNum++;
 
             Debug.Log("Fuuuuuuuck !1");
             

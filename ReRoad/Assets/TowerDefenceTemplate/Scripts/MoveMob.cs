@@ -62,4 +62,12 @@ public class MoveMob : MonoBehaviour
             return;
         }
     }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if(col.tag == "deathTrigger")
+        {
+            Destroy(gameObject);
+        }
+    }
 }
