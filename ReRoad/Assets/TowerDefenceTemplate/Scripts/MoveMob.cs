@@ -2,32 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveMob : MonoBehaviour {
+public class MoveMob : MonoBehaviour
+{
 
     public GameObject pathGo;
 
     int nodeIndex = 0;
-    Transform targetNode;
+    public Transform targetNode;
 
     public GameObject me;
-    int speed = 10;
+    int speed = 6;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    Global_parameter gp;
+    move nodeMaker;
+    // Use this for initialization
+    void Start()
+    {
+        nodeMaker = GameObject.FindObjectOfType<move>();
+        gp = GameObject.FindObjectOfType<Global_parameter>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         if (targetNode == null)
         {
-            Debug.Log(nodeIndex);
             getNextNode();
-            if (targetNode == null)
-            {
-                Destroy(gameObject);
-                // 다 옴 
-            }
+
         }
 
         Vector3 dir = targetNode.position - transform.position;
@@ -44,14 +45,21 @@ public class MoveMob : MonoBehaviour {
 
     void getNextNode()
     {
-       
-        targetNode = pathGo.transform.GetChild(nodeIndex);
-        nodeIndex++;
+        Debug.Log("Max : " + gp.maxNodeNum);
 
-        if (pathGo.transform.GetChild(nodeIndex) == null)
+        Debug.Log("Curr : " + nodeIndex);
+
+        if (nodeIndex < gp.maxNodeNum)
+        {
+            targetNode = pathGo.transform.GetChild(nodeIndex);
+
+            nodeIndex++;
+            return;
+        }
+        else
         {
             targetNode = me.transform;
-            nodeIndex--;
+            return;
         }
     }
 }

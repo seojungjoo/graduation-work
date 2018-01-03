@@ -8,10 +8,13 @@ public class move : MonoBehaviour
 
     public GameObject node;
     public GameObject Path;
+
+    Global_parameter gp;
     // Use this for initialization
     void Start()
     {
         StartCoroutine("makeNode");
+        gp = GameObject.FindObjectOfType<Global_parameter>();
     }
 
     // Update is called once per frame
@@ -24,7 +27,7 @@ public class move : MonoBehaviour
 
         transform.Rotate(0.0f, xmove * 2.0f, 0.0f);
 
-        transform.Translate(0.0f, 0.0f, zmove * 5 * Time.deltaTime);
+        transform.Translate(0.0f, 0.0f, zmove * 20 * Time.deltaTime);
         
     }
 
@@ -32,11 +35,13 @@ public class move : MonoBehaviour
     {
         while (true)
         {
+
             yield return new WaitForSeconds(1.0f);
 
             GameObject g = Instantiate(node, transform.position, Quaternion.identity);
             g.SetActive(true);
             g.transform.parent = Path.transform;
+            gp.maxNodeNum++;
 
         }
     }
@@ -46,18 +51,21 @@ public class move : MonoBehaviour
         if (col.tag == "EndTrigger")
         {
             me.SetActive(true);
-            GameObject tr = GameObject.Find("Terrain");
+
+            GameObject tr = GameObject.Find("towerGround");
             tr.GetComponent<terraiControl>().enabled = false;
 
             GameObject g = Instantiate(node, transform.position, Quaternion.identity);
             g.SetActive(true);
             g.transform.parent = Path.transform;
 
-            StopCoroutine("makeNode");
+            Debug.Log("Fuuuuuuuck !1");
+            
+
+            //StopCoroutine("makeNode");
+
+
             Destroy(gameObject);
-
-
-            //Destroy(gameObject);
         }
     }
 }

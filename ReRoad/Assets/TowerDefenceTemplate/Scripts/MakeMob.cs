@@ -24,7 +24,7 @@ public class MakeMob : MonoBehaviour {
         while (true)
         {
             yield return new WaitForSeconds(0.5f);
-            GameObject g = Instantiate(mob, transform);
+            GameObject g = Instantiate(mob, transform.position,Quaternion.identity);
             g.SetActive(true);
 
             currNum += 1;
