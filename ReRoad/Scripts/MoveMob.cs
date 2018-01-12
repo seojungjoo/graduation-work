@@ -82,7 +82,10 @@ public class MoveMob : MonoBehaviour
         hp -= dmg;
 
         if (hp < 0)
+        {
+            Global.GrayParts += 1;
             Destroy(gameObject);
+        }
 
         
     }

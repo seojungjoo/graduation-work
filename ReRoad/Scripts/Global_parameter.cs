@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public static class Global
+{
+    public static int GreenParts;
+    public static int GrayParts;
+}
+
 public class Global_parameter : MonoBehaviour
 {
 

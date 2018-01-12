@@ -18,7 +18,7 @@ public class CreateDeleteTower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("t"))
+        if (Input.GetKeyDown("t") && Global.GreenParts >= 2 && Global.GrayParts >= 1)
         {
             CreateTower = true;
         }
@@ -35,6 +35,9 @@ public class CreateDeleteTower : MonoBehaviour
                 CreateTower = false;
                 Instantiate(basicTower, CreatingTower.transform.position, CreatingTower.transform.rotation);
                 CreatingTower.transform.position = new Vector3(.0f, .0f, .0f);
+
+                Global.GreenParts -= 2;
+                Global.GrayParts -= 1;
             }
 
             if (DeleteTower == true)
@@ -51,7 +54,7 @@ public class CreateDeleteTower : MonoBehaviour
                     if (hit.collider.tag == "tower")
                     {
                         Destroy(hit.collider.gameObject);
-
+                        Global.GreenParts += 1;
                     }
                 }
             }
