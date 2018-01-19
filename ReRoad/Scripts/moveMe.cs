@@ -6,11 +6,12 @@ public class moveMe : MonoBehaviour {
 
     bool grounded = true;
     Rigidbody rb;
-
+    Animator anim;
 
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -22,6 +23,7 @@ public class moveMe : MonoBehaviour {
         transform.Rotate(0.0f, xmove * 2.0f, 0.0f);
 
         transform.Translate(0.0f, 0.0f, zmove * 5 * Time.deltaTime);
+        anim.SetFloat("speed", zmove);
 
         if(Input.GetKeyDown(KeyCode.Space))
         {

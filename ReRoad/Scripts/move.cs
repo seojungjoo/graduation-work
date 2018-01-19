@@ -30,9 +30,9 @@ public class move : MonoBehaviour
         float xmove = Input.GetAxis("Horizontal");
         float zmove = Input.GetAxis("Vertical");
 
-        transform.Rotate(0.0f, xmove * 4.0f, 0.0f);
+        transform.Rotate(0.0f, xmove * 120.0f*Time.deltaTime, 0.0f);
 
-        transform.Translate(-zmove * 15 * Time.deltaTime, 0.0f,0.0f);
+        transform.Translate(-zmove * 12 * Time.deltaTime, 0.0f,0.0f);
         
     }
 

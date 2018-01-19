@@ -6,6 +6,7 @@ public class MoveMob : MonoBehaviour
 {
 
     public GameObject pathGo;
+    public GameObject item;
 
     int nodeIndex = 0;
     public Transform targetNode;
@@ -18,7 +19,7 @@ public class MoveMob : MonoBehaviour
     
     public GameObject blood;
     
-    int hp = 40;
+    public int hp = 40;
 
     // Use this for initialization
     void Start()
@@ -72,7 +73,7 @@ public class MoveMob : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-        
+            
     }
 
     void recvDmg(int dmg)
@@ -83,7 +84,26 @@ public class MoveMob : MonoBehaviour
 
         if (hp < 0)
         {
-            Global.GrayParts += 1;
+            //Global.GrayParts += 1;
+            GameObject i = Instantiate(item);
+            i.transform.position = this.transform.position;
+            i.SetActive(true);
+
+            float oneMore = Random.Range(.0f, 1.0f);
+
+            if(oneMore < 0.2f)
+            {
+                i = Instantiate(item);
+                i.transform.position = this.transform.position;
+                i.SetActive(true);
+
+            }
+
+            oneMore = Random.Range(.0f, 1.0f);
+            if(oneMore < 0.2f)
+            {
+                // 초록 템 드랍
+            }
             Destroy(gameObject);
         }
 
